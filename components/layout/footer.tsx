@@ -27,6 +27,18 @@ export function Footer() {
             Privacy Policy
           </Link>
           <Link
+            href="/terms"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Terms
+          </Link>
+          <Link
+            href="/support"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Support
+          </Link>
+          <Link
             href="https://apps.apple.com/app/sparky/id000000000"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >

@@ -29,6 +29,12 @@ export function Header() {
           >
             Privacy
           </Link>
+          <Link
+            href="/support"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Support
+          </Link>
           <Button asChild size="sm">
             <Link href="https://apps.apple.com/app/sparky/id000000000">
               Download
