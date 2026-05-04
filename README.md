@@ -1,55 +1,152 @@
 # Sparky Landing
 
-> **Status:** Active
-> This project is currently maintained as the public web presence for Sparky.
+> **Status:** Active static landing site for the Sparky iOS app.
 
-Marketing, privacy, support, and legal site for Sparky, a native iOS second-brain app for private memories, reminders, attachments, and organization.
+`sparky-landing` is the public website for Sparky, a native iOS second-brain app for private memories, reminders, attachments, checklists, and personal organization.
 
-## Summary
+This repository is not the iOS app itself. It exists to present the product, explain the privacy model, provide support content, and host the public terms and privacy pages needed for distribution.
 
-- Public web presence for the Sparky native iOS second-brain app.
-- Solves marketing, privacy, support, and legal pages for app distribution.
-- Main stack: Next.js, React, TypeScript, public imagery, layout components, section components, and static legal/support routes.
-- Current status: active static landing app; App Store link is still a placeholder.
-- Technical value: keeps product claims, privacy promises, support, and terms separate from the native app repository.
+## What This Site Does
 
-## Overview
+- Presents Sparky as a private, on-device memory and reminder app.
+- Highlights core product concepts: minds, calendar timeline, reminders, location triggers, attachments, and checklists.
+- Communicates the privacy promise: no accounts, no cloud service, and no tracking.
+- Provides first-party legal and support routes.
+- Links users to the App Store download page.
 
-`sparky-landing` is the public web presence for the Sparky iOS app. It explains the product promise, highlights private on-device data handling, and provides support, terms, and privacy pages.
+## Routes
 
-## Motivation
+| Route | Purpose | Source |
+| --- | --- | --- |
+| `/` | Landing page with hero, features, privacy highlights, and CTA sections. | `app/page.tsx` |
+| `/privacy` | Privacy policy for the Sparky iOS app. | `app/privacy/page.tsx` |
+| `/terms` | Terms of Service for the Sparky iOS app. | `app/terms/page.tsx` |
+| `/support` | Support page with FAQs, contact email, and system requirements. | `app/support/page.tsx` |
 
-- Position Sparky as a personal second brain that stays on the user's device.
-- Explain memories, minds, smart reminders, timeline organization, attachments, and checklists.
-- Make privacy a core product promise, not a footnote.
-- Provide support and legal pages needed for app distribution.
+## Technology Stack
 
-## Features
+- **Framework:** Next.js 16 with the App Router
+- **UI runtime:** React 19
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4 with CSS variables in `app/globals.css`
+- **UI primitives:** shadcn-style components configured by `components.json`
+- **Icons:** `lucide-react`
+- **Package manager:** pnpm
 
-- Hero with product mascot, App Store CTA, and core promise.
-- Features section covering minds, timeline, reminders, location triggers, attachments, and checklists.
-- Privacy highlight section for no cloud, no tracking, and no accounts.
-- CTA section.
-- Privacy, support, and terms pages.
+No API routes, backend service, database, authentication flow, or runtime data fetching were identified in the current codebase.
 
 ## Project Structure
 
 ```text
 sparky-landing/
-├── app/                  # Next.js routes, legal pages, and root layout
-├── components/layout/    # Header and footer
-├── components/sections/  # Hero, features, privacy highlight, and CTA
-├── components/ui/        # UI primitives
-├── public/               # Sparky imagery and icons
-└── package.json
+├── app/
+│   ├── layout.tsx        # Root metadata, fonts, header/footer shell
+│   ├── page.tsx          # Home route composed from section components
+│   ├── privacy/page.tsx  # Privacy policy
+│   ├── support/page.tsx  # Support and FAQ page
+│   └── terms/page.tsx    # Terms of Service
+├── components/
+│   ├── layout/           # Header and footer
+│   ├── sections/         # Home page sections
+│   └── ui/               # Reusable UI primitives
+├── docs/
+│   ├── index.md          # Documentation index
+│   └── architecture.md   # Technical architecture notes
+├── lib/
+│   └── utils.ts          # Class name utility
+├── public/               # Sparky mascot and app icon images
+└── package.json          # Scripts and dependencies
 ```
 
-## Current Status
+## Prerequisites
 
-The site is a static Next.js landing app. The App Store link currently points to a placeholder app id and should be updated before launch.
+- Node.js compatible with Next.js 16
+- pnpm
 
-## Known Limitations
+This repository includes `pnpm-lock.yaml`, so pnpm should be used to install dependencies.
 
-- Keep product claims aligned with the native iOS app in `sparky`.
-- Preserve privacy wording carefully: no accounts, no cloud, and no tracking must match the implementation.
-- Add browser translation hardening to the root layout before production launch.
+## Installation
+
+```bash
+pnpm install
+```
+
+## Environment Configuration
+
+No project-specific environment variables were found in the current source code.
+
+The site currently uses static content, public image assets, and hardcoded external links. If deployment-specific settings are introduced later, document them here and keep them out of source files when they contain secrets.
+
+## Local Development
+
+```bash
+pnpm dev
+```
+
+This starts the Next.js development server.
+
+## Available Scripts
+
+| Command | Purpose |
+| --- | --- |
+| `pnpm dev` | Start the local Next.js development server. |
+| `pnpm build` | Create a production build with Next.js. |
+| `pnpm start` | Start the production Next.js server after a build. |
+| `pnpm lint` | Run ESLint using the Next.js core web vitals and TypeScript rules. |
+
+## Validation
+
+The only validation script currently defined by the project is:
+
+```bash
+pnpm lint
+```
+
+No test runner, unit tests, integration tests, or end-to-end test setup were identified in the current codebase.
+
+## Build
+
+```bash
+pnpm build
+```
+
+The project uses a standard Next.js production build. No provider-specific build configuration was found.
+
+## Deployment
+
+No deployment provider configuration was detected. The repository has no Dockerfile, CI workflow, Vercel project metadata, or hosting-specific configuration committed in source.
+
+Before production launch:
+
+- Confirm the production hosting provider and domain.
+- Confirm that `metadataBase` in `app/layout.tsx` matches the production domain.
+- Replace all placeholder App Store URLs that currently use `https://apps.apple.com/app/sparky/id000000000`.
+- Add or preserve root-level browser translation hardening in `app/layout.tsx` so browser translators do not mutate the DOM.
+
+## Content and Product Accuracy
+
+Most of the site is product and legal copy. Keep the public claims aligned with the native Sparky iOS app, especially:
+
+- no accounts
+- no cloud sync or remote backup service
+- no tracking or analytics
+- on-device data storage
+- location-based reminders
+- notification behavior
+- attachments, audio, camera, photo library, speech recognition, and permission usage
+
+The support and legal pages use `contact@polterware.com` as the public contact address.
+
+## Current Launch TODOs
+
+- Replace the placeholder App Store app id.
+- Confirm the final production domain and hosting provider.
+- Keep the privacy policy and terms synchronized with the native iOS app implementation.
+- Add browser translation hardening to the root layout before production launch if it has not already been implemented.
+
+## Documentation
+
+Additional documentation is intentionally compact because this is a small static frontend app:
+
+- [`docs/index.md`](docs/index.md)
+- [`docs/architecture.md`](docs/architecture.md)
